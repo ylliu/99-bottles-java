@@ -6,23 +6,14 @@ class BottleNumber {
     }
 
     public int successor(int number) {
-        if (number == 0) {
-            return 99;
-        }
         return number - 1;
     }
 
     public String action() {
-        if (this.number == 0) {
-            return "Go to the store and buy some more, ";
-        }
         return "Take " + pronoun() + " down and pass it around, ";
     }
 
     public String quantity() {
-        if (this.number == 0) {
-            return "no more";
-        }
         return String.valueOf(this.number);
     }
 
@@ -38,5 +29,24 @@ class BottleNumber {
             return "bottle";
         }
         return "bottles";
+    }
+}
+
+class BottleNumber0 extends BottleNumber {
+
+    public BottleNumber0(int number) {
+        super(number);
+    }
+
+    public String action() {
+        return "Go to the store and buy some more, ";
+    }
+
+    public String quantity() {
+        return "no more";
+    }
+
+    public int successor(int number) {
+        return 99;
     }
 }

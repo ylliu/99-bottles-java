@@ -4,8 +4,8 @@ import java.util.stream.IntStream;
 
 public class Bottle {
     public String verse(int number) {
-        BottleNumber bottleNumber = new BottleNumber(number);
-        BottleNumber nextBottleNumber = new BottleNumber(bottleNumber.successor(number));
+        BottleNumber bottleNumber = bottleNumberFor(number);
+        BottleNumber nextBottleNumber = bottleNumberFor(bottleNumber.successor(number));
         return bottleNumber.quantity().toUpperCase() + " " + bottleNumber.container() + " of beer on the wall," +
                 bottleNumber.quantity() + " " + bottleNumber.container() + " of beer.\n" +
                 bottleNumber.action() +
@@ -15,6 +15,13 @@ public class Bottle {
     public String verses(int starting, int ending) {
         return IntStream.rangeClosed(ending, starting).boxed().sorted(Collections.reverseOrder()).
                 map(this::verse).collect(Collectors.joining("\n"));
+    }
+
+    public BottleNumber bottleNumberFor(int number) {
+        if (number == 0) {
+            return new BottleNumber0(number);
+        }
+        return new BottleNumber(number);
     }
 }
 
