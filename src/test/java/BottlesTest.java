@@ -40,6 +40,15 @@ public class BottlesTest {
     }
 
     @Test
+    public void test_verse_0() {
+        String expected =  "No more bottles of beer on the wall," +
+                "no more bottles of beer.\n" +
+                "Go to the store and buy some more, " +
+                "99 bottles of beer on the wall.\n";
+        assertEquals(expected, new Bottle().verse(0));
+    }
+
+    @Test
     public void test_a_couple_verses() {
         String expected = "99 bottles of beer on the wall," +
                 "99 bottles of beer.\n" +
@@ -53,12 +62,12 @@ public class BottlesTest {
         assertEquals(expected, new Bottle().verses(99, 98));
     }
 
-//    @Test
-//    public void test_verse_6() {
-//        String expected = "1 six-pack of beer on the wall," +
-//                "1 six-pack of beer.\n" +
-//                "Take one down and pass it around, " +
-//                "5 bottles of beer on the wall.\n";
-//        assertEquals(expected, new Bottle().verse(6));
-//    }
+    @Test
+    public void test_verse_6() {
+        String expected = "1 six-pack of beer on the wall," +
+                "1 six-pack of beer.\n" +
+                "Take one down and pass it around, " +
+                "5 bottles of beer on the wall.\n";
+        assertEquals(expected, new Bottle().verse(6));
+    }
 }

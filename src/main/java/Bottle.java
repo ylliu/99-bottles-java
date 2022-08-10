@@ -4,12 +4,11 @@ import java.util.stream.IntStream;
 
 public class Bottle {
     public String verse(int number) {
-        BottleNumber bottleNumber = bottleNumberFor(number);
-        BottleNumber nextBottleNumber = bottleNumberFor(bottleNumber.successor(number));
-        return bottleNumber.quantity().toUpperCase() + " " + bottleNumber.container() + " of beer on the wall," +
-                bottleNumber.quantity() + " " + bottleNumber.container() + " of beer.\n" +
+        BottleNumber bottleNumber = BottleNumber.bottleNumberFor(number);
+        return capitalize(bottleNumber + " of beer on the wall,") +
+                bottleNumber + " of beer.\n" +
                 bottleNumber.action() +
-                nextBottleNumber.quantity() + " " + nextBottleNumber.container() + " of beer on the wall.\n";
+                bottleNumber.successor() + " of beer on the wall.\n";
     }
 
     public String verses(int starting, int ending) {
@@ -17,11 +16,11 @@ public class Bottle {
                 map(this::verse).collect(Collectors.joining("\n"));
     }
 
-    public BottleNumber bottleNumberFor(int number) {
-        if (number == 0) {
-            return new BottleNumber0(number);
-        }
-        return new BottleNumber(number);
+    public static String capitalize(String str) {
+        if (str == null || str.length() <= 1) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
+
+
 }
 

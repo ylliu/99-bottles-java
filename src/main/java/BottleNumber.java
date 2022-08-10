@@ -5,8 +5,17 @@ class BottleNumber {
         this.number = number;
     }
 
-    public int successor(int number) {
-        return number - 1;
+    public static BottleNumber bottleNumberFor(int number) {
+        return switch (number) {
+            case 0 -> new BottleNumber0(number);
+            case 1 -> new BottleNumber1(number);
+            case 6 -> new BottleNumber6(number);
+            default -> new BottleNumber(number);
+        };
+    }
+
+    public BottleNumber successor() {
+        return bottleNumberFor(this.number - 1);
     }
 
     public String action() {
@@ -18,17 +27,15 @@ class BottleNumber {
     }
 
     public String pronoun() {
-        if (this.number == 1) {
-            return "it";
-        }
         return "one";
     }
 
     public String container() {
-        if (this.number == 1) {
-            return "bottle";
-        }
         return "bottles";
+    }
+
+    public String toString() {
+        return quantity() + " " + container();
     }
 }
 
@@ -46,7 +53,38 @@ class BottleNumber0 extends BottleNumber {
         return "no more";
     }
 
-    public int successor(int number) {
-        return 99;
+    public BottleNumber successor() {
+        return bottleNumberFor(99);
     }
+}
+
+class BottleNumber1 extends BottleNumber {
+
+    public BottleNumber1(int number) {
+        super(number);
+    }
+
+    public String pronoun() {
+        return "it";
+    }
+
+    public String container() {
+        return "bottle";
+    }
+}
+
+class BottleNumber6 extends BottleNumber {
+
+    public BottleNumber6(int number) {
+        super(number);
+    }
+
+    public String quantity() {
+        return "1";
+    }
+
+    public String container() {
+        return "six-pack";
+    }
+
 }
