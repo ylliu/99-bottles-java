@@ -13,19 +13,26 @@ public class Bottle {
                         "99 bottles of beer on the wall.\n";
                 break;
             case 1:
-                result = number + " bottle of beer on the wall," +
-                        number + " bottle of beer.\n" +
+                result = number + " " + container(number) + " of beer on the wall," +
+                        number + " " + container(number) + " of beer.\n" +
                         "Take " + pronoun(number) + " down and pass it around, " +
-                        "no more bottles of beer on the wall.\n";
+                        quantity(number - 1) + " " + container(number - 1) + " of beer on the wall.\n";
                 break;
             default:
-                result = number + " bottles of beer on the wall," +
-                        number + " bottles of beer.\n" +
+                result = number + " " + container(number) + " of beer on the wall," +
+                        number + " " + container(number) + " of beer.\n" +
                         "Take " + pronoun(number) + " down and pass it around, " +
-                        (number - 1) + " " + container(number - 1) + " of beer on the wall.\n";
+                        quantity(number - 1) + " " + container(number - 1) + " of beer on the wall.\n";
 
         }
         return result;
+    }
+
+    private String quantity(int number) {
+        if (number == 0) {
+            return "no more";
+        }
+        return String.valueOf(number);
     }
 
     private String pronoun(int number) {
