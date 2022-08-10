@@ -7,13 +7,14 @@ public class Bottle {
         String result;
         switch (number) {
             case 0:
-                result = "No more bottles of beer on the wall," +
+                String s = "No more";
+                result = quantity(number).toUpperCase() + " " + container(number) + " of beer on the wall," +
                         "no more bottles of beer.\n" +
                         "Go to the store and buy some more, " +
                         "99 bottles of beer on the wall.\n";
                 break;
             default:
-                result = number + " " + container(number) + " of beer on the wall," +
+                result = quantity(number).toUpperCase() + " " + container(number) + " of beer on the wall," +
                         number + " " + container(number) + " of beer.\n" +
                         "Take " + pronoun(number) + " down and pass it around, " +
                         quantity(number - 1) + " " + container(number - 1) + " of beer on the wall.\n";
