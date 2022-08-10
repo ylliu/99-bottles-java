@@ -4,10 +4,12 @@ import java.util.stream.IntStream;
 
 public class Bottle {
     public String verse(int number) {
-        return new BottleNumber(number).quantity().toUpperCase() + " " + new BottleNumber(number).container() + " of beer on the wall," +
-                new BottleNumber(number).quantity() + " " + new BottleNumber(number).container() + " of beer.\n" +
-                new BottleNumber(number).action() +
-                new BottleNumber(new BottleNumber(number).successor(number)).quantity() + " " + new BottleNumber(number - 1).container() + " of beer on the wall.\n";
+        BottleNumber bottleNumber = new BottleNumber(number);
+        BottleNumber nextBottleNumber = new BottleNumber(bottleNumber.successor(number));
+        return bottleNumber.quantity().toUpperCase() + " " + bottleNumber.container() + " of beer on the wall," +
+                bottleNumber.quantity() + " " + bottleNumber.container() + " of beer.\n" +
+                bottleNumber.action() +
+                nextBottleNumber.quantity() + " " + nextBottleNumber.container() + " of beer on the wall.\n";
     }
 
     public String verses(int starting, int ending) {
