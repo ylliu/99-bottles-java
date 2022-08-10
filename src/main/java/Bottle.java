@@ -1,7 +1,6 @@
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Bottle {
     public String verse(int number) {
@@ -19,20 +18,21 @@ public class Bottle {
                         "Take it down and pass it around, " +
                         "no more bottles of beer on the wall.\n";
                 break;
-            case 2:
-                result = number + " bottles of beer on the wall," +
-                        number + " bottles of beer.\n" +
-                        "Take one down and pass it around, " +
-                        (number - 1) + " bottle of beer on the wall.\n";
-                break;
             default:
                 result = number + " bottles of beer on the wall," +
                         number + " bottles of beer.\n" +
                         "Take one down and pass it around, " +
-                        (number - 1) + " bottles of beer on the wall.\n";
+                        (number - 1) + " " + container(number - 1) + " of beer on the wall.\n";
 
         }
         return result;
+    }
+
+    private String container(int number) {
+        if (number == 1) {
+            return "bottle";
+        }
+        return "bottles";
     }
 
     public String verses(int starting, int ending) {
