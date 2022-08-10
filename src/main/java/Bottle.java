@@ -10,16 +10,23 @@ public class Bottle {
                 result = quantity(number).toUpperCase() + " " + container(number) + " of beer on the wall," +
                         quantity(number) + " " + container(number) + " of beer.\n" +
                         action(number) +
-                        "99 bottles of beer on the wall.\n";
+                        quantity(successor(number)) + " " + container(number - 1) + " of beer on the wall.\n";
                 break;
             default:
                 result = quantity(number).toUpperCase() + " " + container(number) + " of beer on the wall," +
                         quantity(number) + " " + container(number) + " of beer.\n" +
                         action(number) +
-                        quantity(number - 1) + " " + container(number - 1) + " of beer on the wall.\n";
+                        quantity(successor(number)) + " " + container(number - 1) + " of beer on the wall.\n";
 
         }
         return result;
+    }
+
+    private int successor(int number) {
+        if (number == 0) {
+            return 99;
+        }
+        return number - 1;
     }
 
     private String action(int number) {
