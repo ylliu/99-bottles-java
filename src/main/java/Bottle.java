@@ -4,42 +4,14 @@ import java.util.stream.IntStream;
 
 public class Bottle {
     public String verse(int number) {
-        return new BottleNumber(number).quantity().toUpperCase() + " " + container(number) + " of beer on the wall," +
-                new BottleNumber(number).quantity() + " " + container(number) + " of beer.\n" +
+        return new BottleNumber(number).quantity().toUpperCase() + " " + new BottleNumber(number).container() + " of beer on the wall," +
+                new BottleNumber(number).quantity() + " " + new BottleNumber(number).container() + " of beer.\n" +
                 action(number) +
-                new BottleNumber(successor(number)).quantity() + " " + container(number - 1) + " of beer on the wall.\n";
-    }
-
-    private int successor(int number) {
-        if (number == 0) {
-            return 99;
-        }
-        return number - 1;
+                new BottleNumber(new BottleNumber(number).successor(number)).quantity() + " " + new BottleNumber(number - 1).container() + " of beer on the wall.\n";
     }
 
     private String action(int number) {
-        if (number == 0) {
-            return "Go to the store and buy some more, ";
-        }
-        return "Take " + pronoun(number) + " down and pass it around, ";
-    }
-
-    private String quantity(int number) {
-        return new BottleNumber(number).quantity();
-    }
-
-    private String pronoun(int number) {
-        if (number == 1) {
-            return "it";
-        }
-        return "one";
-    }
-
-    private String container(int number) {
-        if (number == 1) {
-            return "bottle";
-        }
-        return "bottles";
+        return new BottleNumber(number).action();
     }
 
     public String verses(int starting, int ending) {
@@ -48,45 +20,3 @@ public class Bottle {
     }
 }
 
-class BottleNumber {
-    private int number;
-
-    public BottleNumber(int number) {
-        this.number = number;
-    }
-
-    public int successor(int number) {
-        if (number == 0) {
-            return 99;
-        }
-        return number - 1;
-    }
-
-    public String action(int number) {
-        if (number == 0) {
-            return "Go to the store and buy some more, ";
-        }
-        return "Take " + pronoun(number) + " down and pass it around, ";
-    }
-
-    public String quantity() {
-        if (this.number == 0) {
-            return "no more";
-        }
-        return String.valueOf(this.number);
-    }
-
-    public String pronoun(int number) {
-        if (number == 1) {
-            return "it";
-        }
-        return "one";
-    }
-
-    public String container(int number) {
-        if (number == 1) {
-            return "bottle";
-        }
-        return "bottles";
-    }
-}
