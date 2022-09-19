@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BottlesTest {
     @Test
-    public void test_the_first_verse() {
+    public void test_verse_99() {
         String expected = "99 bottles of beer on the wall," +
                 "99 bottles of beer.\n" +
                 "Take one down and pass it around, " +
@@ -13,7 +13,7 @@ public class BottlesTest {
     }
 
     @Test
-    public void test_another_verse() {
+    public void test_verse_3() {
         String expected = "3 bottles of beer on the wall," +
                 "3 bottles of beer.\n" +
                 "Take one down and pass it around, " +
@@ -37,6 +37,15 @@ public class BottlesTest {
                 "Take it down and pass it around, " +
                 "no more bottles of beer on the wall.\n";
         assertEquals(expected, new Bottle().verse(1));
+    }
+
+    @Test
+    public void test_verse_0() {
+        String expected = "No more bottles of beer on the wall," +
+                "no more bottles of beer.\n" +
+                "Go to the store and buy some more, " +
+                "99 bottles of beer on the wall.\n";
+        assertEquals(expected, new Bottle().verse(0));
     }
 
     @Test
